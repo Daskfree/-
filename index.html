@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Русский язык: Орфография (7 класс)</title>
+    <style>
+        /* ===== СТИЛИ (CSS) ===== */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #4a90e2;
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        h2 {
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .rule-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .example {
+            font-style: italic;
+            color: #555;
+            background-color: #eee;
+            padding: 5px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .question {
+            background: white;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            flex-wrap: wrap;
+        }
+
+        .question input {
+            width: 60px;
+            padding: 5px;
+            text-align: center;
+            font-size: 1.1rem;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .question input:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #219150;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .correct {
+            border-color: #27ae60 !important;
+            background-color: #e8f8f5;
+        }
+
+        .incorrect {
+            border-color: #e74c3c !important;
+            background-color: #fdedec;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Орфографический практикум</h1>
+        <p>Темы: Приставки на З/С, ПРЕ-/ПРИ-, Ы/И после приставок</p>
+    </header>
+
+    <main>
+        <!-- Блок теории -->
+        <section class="theory">
+            <h2>📚 Теория</h2>
+            
+            <div class="rule-card">
+                <h3>1. Приставки на З и С</h3>
+                <p>Правописание зависит от <strong>звонкости/глухости</strong> следующего согласного:</p>
+                <ul>
+                    <li>Перед <strong>звонкими</strong> пишем <strong>З</strong>: <em>без-</em>, <em>воз-</em>, <em>из-</em>, <em>раз-</em>.</li>
+                    <li>Перед <strong>глухими</strong> пишем <strong>С</strong>: <em>бес-</em>, <em>вос-</em>, <em>ис-</em>, <em>рас-</em>.</li>
+                </ul>
+                <p class="example">Пример: <b>раЗ</b>бить (б - звонкая), <b>раС</b>писать (п - глухая).</p>
+            </div>
+
+            <div class="rule-card">
+                <h3>2. Приставки ПРЕ- и ПРИ-</h3>
+                <p><strong>ПРИ-</strong> пишется, если значение:</p>
+                <ul>
+                    <li>Приближение (приехал)</li>
+                    <li>Присоединение (приклеил)</li>
+                    <li>Близость (пришкольный)</li>
+                    <li>Неполное действие (присел)</li>
+                </ul>
+                <p><strong>ПРЕ-</strong> пишется, если значение:</p>
+                <ul>
+                    <li>Очень (прекрасный = очень красивый)</li>
+                    <li>Пере- (преградить = перегородить)</li>
+                </ul>
+            </div>
+
+            <div class="rule-card">
+                <h3>3. Гласные Ы и И после приставок</h3>
+                <p>После русских приставок на согласную буква <strong>И</strong> меняется на <strong>Ы</strong>.</p>
+                <p class="example">Пример: <em>играть</em> -> <b>сы</b>грать, <em>искать</em> -> <b>подЫ</b>скать.</p>
+                <p><strong>Исключения:</strong> После приставок <em>меж-</em>, <em>сверх-</em> пишется <strong>И</strong> (межинститутский).</p>
+            </div>
+        </section>
+
+        <!-- Блок практики -->
+        <section class="practice">
+            <h2>✍️ Практикум</h2>
+            <p>Впиши пропущенную букву (одну) в каждое слово:</p>
+            <div id="quiz-container">
+                <!-- Задания добавятся автоматически -->
+            </div>
+            <button id="check-btn">Проверить ответы</button>
+            <div id="result"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Создано для урока русского языка в 7 классе</p>
+    </footer>
+
+    <script>
+        /* ===== ЛОГИКА (JavaScript) ===== */
+        const questions = [
+            // Приставки на З/С
+            { text: "ра..бить (звонкая б)", answer: "з" },
+            { text: "ра..писать (глухая п)", answer: "с" },
+            { text: "бе..граничный (звонкая г)", answer: "з" },
+            { text: "бе..конечный (глухая к)", answer: "с" },
+            { text: "и..пугать (глухая п)", answer: "с" },
+            
+            // ПРЕ и ПРИ
+            { text: "пр..ехать (приближение)", answer: "и" },
+            { text: "пр..красный (очень)", answer: "е" },
+            { text: "пр..клеить (присоединение)", answer: "и" },
+            { text: "пр..градить (пере-)", answer: "е" },
+            { text: "пр..сесть (неполное действие)", answer: "и" },
+
+            // Ы и И
+            { text: "без..нтересный (русская приставка)", answer: "ы" },
+            { text: "сверх..нтересный (исключение)", answer: "и" },
+            { text: "под..грать (русская приставка)", answer: "ы" },
+            { text: "меж..нститутский (исключение)", answer: "и" },
+            { text: "от..скать (русская приставка)", answer: "ы" }
+        ];
+
+        const container = document.getElementById('quiz-container');
+        const checkBtn = document.getElementById('check-btn');
+        const resultDiv = document.getElementById('result');
+
+        function renderQuestions() {
+            questions.forEach((q, index) => {
+                const div = document.createElement('div');
+                div.className = 'question';
+                
+                const parts = q.text.split('..');
+                
+                div.innerHTML = `
+                    <span>${index + 1}. ${parts[0]}</span>
+                    <input type="text" maxlength="1" data-index="${index}" placeholder="?">
+                    <span>${parts[1] || ''}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function checkAnswers() {
+            const inputs = document.querySelectorAll('.question input');
+            let score = 0;
+
+            inputs.forEach(input => {
+                const index = input.getAttribute('data-index');
+                const userAnswer = input.value.toLowerCase().trim();
+                const correctAnswer = questions[index].answer;
+
+                input.classList.remove('correct', 'incorrect');
+
+                if (userAnswer === correctAnswer) {
+                    input.classList.add('correct');
+                    score++;
+                } else {
+                    input.classList.add('incorrect');
+                }
+            });
+
+            resultDiv.textContent = `Твой результат: ${score} из ${questions.length}`;
+            if (score === questions.length) {
+                resultDiv.style.color = '#27ae60';
+                resultDiv.textContent += " 🎉 Отлично!";
+            } else {
+                resultDiv.style.color = '#e74c3c';
+            }
+        }
+
+        renderQuestions();
+        checkBtn.addEventListener('click', checkAnswers);
+    </script>
+</body>
+</html>
