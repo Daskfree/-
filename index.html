@@ -15,14 +15,67 @@
             padding: 0;
             line-height: 1.65;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ======= ПЛАВАЮЩИЕ КОТИКИ ======= */
+        .floating-cat {
+            position: fixed;
+            font-size: 2.2rem;
+            z-index: 50;
+            pointer-events: none;
+            user-select: none;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+        }
+        .cat-1 { top: 15%; left: 2%; animation: catFloat 6s ease-in-out infinite; }
+        .cat-2 { top: 40%; right: 2%; animation: catFloat 7s ease-in-out infinite 1s; }
+        .cat-3 { bottom: 12%; left: 3%; animation: catFloat 5.5s ease-in-out infinite 0.5s; }
+        .cat-4 { bottom: 25%; right: 3%; animation: catFloat 6.5s ease-in-out infinite 1.5s; }
+        .cat-5 { top: 65%; left: 1.5%; animation: catFloat 8s ease-in-out infinite 0.8s; font-size: 1.6rem; }
+        .cat-6 { top: 8%; right: 4%; animation: catFloat 7.5s ease-in-out infinite 2s; font-size: 1.8rem; }
+
+        @keyframes catFloat {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-18px) rotate(5deg); }
+        }
+
+        /* ======= ПЛАВАЮЩИЕ ОБЛАКА ======= */
+        .cloud {
+            position: fixed;
+            font-size: 3rem;
+            opacity: 0.35;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+        }
+        .cloud-1 { top: 20%; left: -5%; animation: cloudMove 40s linear infinite; }
+        .cloud-2 { top: 70%; right: -5%; animation: cloudMoveRev 50s linear infinite; }
+        .cloud-3 { top: 50%; left: -8%; animation: cloudMove 60s linear infinite 5s; }
+
+        @keyframes cloudMove {
+            from { transform: translateX(-10vw); }
+            to { transform: translateX(110vw); }
+        }
+        @keyframes cloudMoveRev {
+            from { transform: translateX(10vw); }
+            to { transform: translateX(-110vw); }
+        }
+
+        @media (max-width: 900px) {
+            .floating-cat { font-size: 1.4rem; }
+            .cat-5, .cat-6 { display: none; }
+        }
+        @media (max-width: 600px) {
+            .floating-cat { display: none; }
         }
 
         /* ======= ШАПКА ======= */
         header {
-            background: linear-gradient(135deg, #4a90e2 0%, #6a5acd 100%);
+            background: linear-gradient(135deg, #4a90e2 0%, #6a5acd 50%, #9b59b6 100%);
             color: white;
             text-align: center;
-            padding: 3rem 1rem 3.5rem;
+            padding: 3.5rem 1rem 4.5rem;
             margin-bottom: 2rem;
             box-shadow: 0 6px 20px rgba(74, 144, 226, 0.35);
             position: relative;
@@ -33,8 +86,17 @@
             position: absolute;
             top: -50%; left: -50%;
             width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 60%);
             animation: pulse 8s ease-in-out infinite;
+        }
+        header::after {
+            content: "🐱 📚 ✨";
+            position: absolute;
+            bottom: 12px; left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            opacity: 0.8;
+            letter-spacing: 8px;
         }
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
@@ -42,10 +104,10 @@
         }
         header h1 {
             margin: 0 0 12px;
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             letter-spacing: 0.5px;
             position: relative;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         header p {
             margin: 0;
@@ -59,6 +121,8 @@
             max-width: 920px;
             margin: 0 auto;
             padding: 0 1rem 4rem;
+            position: relative;
+            z-index: 10;
         }
 
         h2 {
@@ -126,6 +190,41 @@
             margin: 12px 0;
             font-size: 0.97rem;
         }
+
+        /* ======= ТАБЛИЦА ПРИСТАВОК З/С ======= */
+        .prefix-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            font-size: 0.97rem;
+        }
+        .prefix-table th {
+            background: linear-gradient(135deg, #4a90e2, #6a5acd);
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .prefix-table td {
+            padding: 9px 14px;
+            border-bottom: 1px solid #eef2f7;
+            vertical-align: top;
+        }
+        .prefix-table tr:nth-child(even) td { background: #f8fbff; }
+        .prefix-table tr:last-child td { border-bottom: none; }
+        .prefix-table .pair {
+            font-weight: 600;
+            color: #357abd;
+            white-space: nowrap;
+        }
+        .prefix-table .example-cell {
+            color: #34495e;
+            font-style: italic;
+        }
+        .prefix-table .example-cell b { font-style: normal; }
 
         /* ======= ВКЛАДКИ ======= */
         .tabs {
@@ -309,16 +408,40 @@
             font-size: 0.9rem;
             border-top: 1px solid #e2e8f0;
             margin-top: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+        footer::before {
+            content: "🐾 🐾 🐾";
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            opacity: 0.5;
+            letter-spacing: 6px;
         }
 
         @media (max-width: 600px) {
             header h1 { font-size: 1.6rem; }
             .tabs { flex-direction: column; }
             .tab-btn { min-width: auto; }
+            .prefix-table { font-size: 0.85rem; }
+            .prefix-table th, .prefix-table td { padding: 7px 8px; }
         }
     </style>
 </head>
 <body>
+    <!-- Плавающие котики и облака -->
+    <div class="floating-cat cat-1">🐱</div>
+    <div class="floating-cat cat-2">😺</div>
+    <div class="floating-cat cat-3">🐈</div>
+    <div class="floating-cat cat-4">😸</div>
+    <div class="floating-cat cat-5">🐾</div>
+    <div class="floating-cat cat-6">🐱</div>
+
+    <div class="cloud cloud-1">☁️</div>
+    <div class="cloud cloud-2">☁️</div>
+    <div class="cloud cloud-3">☁️</div>
+
     <header>
         <h1>Орфографический практикум</h1>
         <p>7 класс · Приставки, оканчивающиеся на З/С · ПРЕ-/ПРИ- · Ы/И после приставок</p>
@@ -331,22 +454,57 @@
 
             <div class="rule-card">
                 <h3>1. Приставки, оканчивающиеся на З и С</h3>
-                <p>В русском языке есть приставки, которые оканчиваются на <b>З</b> или <b>С</b>:
-                   <em>без-/бес-, воз-/вос-, из-/ис-, низ-/нис-, раз-/рас-, через-/черес-, чрез-/чрес-</em>.</p>
-                <p>Их написание зависит от <b>первого согласного корня</b>:</p>
+                <p>В русском языке есть приставки, которые оканчиваются на <b>З</b> или <b>С</b>.
+                   Их написание зависит от <b>первого согласного корня</b>:</p>
                 <ul>
                     <li>Перед <b>звонким</b> согласным или гласным пишем <b>З</b>.</li>
                     <li>Перед <b>глухим</b> согласным пишем <b>С</b>.</li>
                 </ul>
-                <span class="example">
-                    ра<b>З</b>бить (б — звонкая), ра<b>С</b>писать (п — глухая),<br>
-                    бе<b>З</b>звучный (з — звонкая), бе<b>С</b>конечный (к — глухая).
-                </span>
+
+                <table class="prefix-table">
+                    <thead>
+                        <tr>
+                            <th>Приставка</th>
+                            <th>Пример</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="pair">без- / бес-</td>
+                            <td class="example-cell">бе<b>з</b>звучный (з — звонкая), бе<b>с</b>конечный (к — глухая)</td>
+                        </tr>
+                        <tr>
+                            <td class="pair">воз- / вос-</td>
+                            <td class="example-cell">во<b>з</b>горание (г — звонкая), во<b>с</b>петь (п — глухая)</td>
+                        </tr>
+                        <tr>
+                            <td class="pair">из- / ис-</td>
+                            <td class="example-cell">и<b>з</b>дать (д — звонкая), и<b>с</b>пугать (п — глухая)</td>
+                        </tr>
+                        <tr>
+                            <td class="pair">низ- / нис-</td>
+                            <td class="example-cell">ни<b>з</b>вергать (в — звонкая), ни<b>с</b>падать (п — глухая)</td>
+                        </tr>
+                        <tr>
+                            <td class="pair">раз- / рас-</td>
+                            <td class="example-cell">ра<b>з</b>бить (б — звонкая), ра<b>с</b>писать (п — глухая)</td>
+                        </tr>
+                        <tr>
+                            <td class="pair">через- / черес-</td>
+                            <td class="example-cell">чере<b>з</b>мерный (м — звонкая), чере<b>с</b>чур (ч — глухая)</td>
+                        </tr>
+                        <tr>
+                            <td class="pair">чрез- / чрес-</td>
+                            <td class="example-cell">чре<b>з</b>мерный, чре<b>с</b>полосица</td>
+                        </tr>
+                    </tbody>
+                </table>
+
                 <div class="warning">
                     ⚠️ <b>Важно:</b> приставки <em>З-</em> не бывает! Пишем всегда <b>С</b>: сделать, сдать, сжать.
                 </div>
                 <div class="warning">
-                    💡 <b>Не путай приставки с корнями!</b> В словах <em>здесь, здание, здоровье, ни зги</em> буква <b>З</b> — это часть <b>корня</b>, а не приставка. Поэтому правило о приставках на З/С к ним не применяется — эти слова просто нужно запомнить.
+                    💡 <b>Не путай приставки с корнями!</b> В словах <em>здесь, здание, здоровье, ни зги</em> буква <b>З</b> — это часть <b>корня</b>, а не приставка. Правило о приставках на З/С к ним не применяется.
                 </div>
             </div>
 
@@ -491,8 +649,8 @@
                 { type: "choice", text: "В каком слове пишется И?", options: ["без..нтересный", "с..грать", "от..скать", "сверх..нтересный"], answer: "сверх..нтересный" },
                 { type: "choice", text: "Почему в слове «поиграть» пишется И?", options: ["Это исключение", "Приставка на гласную", "Иноязычная приставка", "После МЕЖ-"], answer: "Приставка на гласную" },
                 { type: "choice", text: "Найди слово с ошибкой:", options: ["сыграть", "безынтересный", "сверхинтересный", "подыскать"], answer: "безынтересный" },
-                { type: "whole", text: "Напиши слово целиком: «без__нтересный»", answer: "безынтересный" },
-                { type: "whole", text: "Напиши слово целиком: «сверх__нтересный»", answer: "сверхинтересный" }
+                { type: "input", text: "пред..юльский", answer: "ы" },
+                { type: "input", text: "пост..мпрессионизм", answer: "и" }
             ]
         };
 
@@ -591,7 +749,7 @@
                         fb.textContent = "✓ Верно!";
                         fb.className = "feedback ok";
                     } else {
-                        fb.textContent = `✗ Ошибка. Правильно: ${task.answer}`;
+                        fb.textContent = "✗ Ошибка";
                         fb.className = "feedback err";
                     }
                 }
