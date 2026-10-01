@@ -15,59 +15,6 @@
             padding: 0;
             line-height: 1.65;
             min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* ======= ПЛАВАЮЩИЕ КОТИКИ ======= */
-        .floating-cat {
-            position: fixed;
-            font-size: 2.2rem;
-            z-index: 50;
-            pointer-events: none;
-            user-select: none;
-            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
-        }
-        .cat-1 { top: 15%; left: 2%; animation: catFloat 6s ease-in-out infinite; }
-        .cat-2 { top: 40%; right: 2%; animation: catFloat 7s ease-in-out infinite 1s; }
-        .cat-3 { bottom: 12%; left: 3%; animation: catFloat 5.5s ease-in-out infinite 0.5s; }
-        .cat-4 { bottom: 25%; right: 3%; animation: catFloat 6.5s ease-in-out infinite 1.5s; }
-        .cat-5 { top: 65%; left: 1.5%; animation: catFloat 8s ease-in-out infinite 0.8s; font-size: 1.6rem; }
-        .cat-6 { top: 8%; right: 4%; animation: catFloat 7.5s ease-in-out infinite 2s; font-size: 1.8rem; }
-
-        @keyframes catFloat {
-            0%, 100% { transform: translateY(0) rotate(-5deg); }
-            50% { transform: translateY(-18px) rotate(5deg); }
-        }
-
-        /* ======= ПЛАВАЮЩИЕ ОБЛАКА ======= */
-        .cloud {
-            position: fixed;
-            font-size: 3rem;
-            opacity: 0.35;
-            z-index: 1;
-            pointer-events: none;
-            user-select: none;
-        }
-        .cloud-1 { top: 20%; left: -5%; animation: cloudMove 40s linear infinite; }
-        .cloud-2 { top: 70%; right: -5%; animation: cloudMoveRev 50s linear infinite; }
-        .cloud-3 { top: 50%; left: -8%; animation: cloudMove 60s linear infinite 5s; }
-
-        @keyframes cloudMove {
-            from { transform: translateX(-10vw); }
-            to { transform: translateX(110vw); }
-        }
-        @keyframes cloudMoveRev {
-            from { transform: translateX(10vw); }
-            to { transform: translateX(-110vw); }
-        }
-
-        @media (max-width: 900px) {
-            .floating-cat { font-size: 1.4rem; }
-            .cat-5, .cat-6 { display: none; }
-        }
-        @media (max-width: 600px) {
-            .floating-cat { display: none; }
         }
 
         /* ======= ШАПКА ======= */
@@ -75,7 +22,7 @@
             background: linear-gradient(135deg, #4a90e2 0%, #6a5acd 50%, #9b59b6 100%);
             color: white;
             text-align: center;
-            padding: 3.5rem 1rem 4.5rem;
+            padding: 3.5rem 1rem 3.5rem;
             margin-bottom: 2rem;
             box-shadow: 0 6px 20px rgba(74, 144, 226, 0.35);
             position: relative;
@@ -88,15 +35,6 @@
             width: 200%; height: 200%;
             background: radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 60%);
             animation: pulse 8s ease-in-out infinite;
-        }
-        header::after {
-            content: "🐱 📚 ✨";
-            position: absolute;
-            bottom: 12px; left: 50%;
-            transform: translateX(-50%);
-            font-size: 1.2rem;
-            opacity: 0.8;
-            letter-spacing: 8px;
         }
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
@@ -122,7 +60,6 @@
             margin: 0 auto;
             padding: 0 1rem 4rem;
             position: relative;
-            z-index: 10;
         }
 
         h2 {
@@ -131,22 +68,12 @@
             margin: 2rem 0 1.2rem;
             padding-bottom: 12px;
             border-bottom: 3px dashed #c9d9ec;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
 
         h3 {
             color: #357abd;
             margin-top: 0;
             font-size: 1.25rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        h3::before {
-            content: "📌";
-            font-size: 1rem;
         }
 
         /* ======= КАРТОЧКИ ТЕОРИИ ======= */
@@ -352,7 +279,6 @@
         }
         .options input[type="radio"] { display: none; }
         .options input[type="radio"]:checked + span { font-weight: bold; color: #2c5c9c; }
-        .options input[type="radio"]:checked + span::before { content: "✓ "; color: #27ae60; }
 
         .feedback {
             font-size: 0.92rem;
@@ -408,16 +334,6 @@
             font-size: 0.9rem;
             border-top: 1px solid #e2e8f0;
             margin-top: 2rem;
-            position: relative;
-            z-index: 10;
-        }
-        footer::before {
-            content: "🐾 🐾 🐾";
-            display: block;
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            opacity: 0.5;
-            letter-spacing: 6px;
         }
 
         @media (max-width: 600px) {
@@ -430,18 +346,6 @@
     </style>
 </head>
 <body>
-    <!-- Плавающие котики и облака -->
-    <div class="floating-cat cat-1">🐱</div>
-    <div class="floating-cat cat-2">😺</div>
-    <div class="floating-cat cat-3">🐈</div>
-    <div class="floating-cat cat-4">😸</div>
-    <div class="floating-cat cat-5">🐾</div>
-    <div class="floating-cat cat-6">🐱</div>
-
-    <div class="cloud cloud-1">☁️</div>
-    <div class="cloud cloud-2">☁️</div>
-    <div class="cloud cloud-3">☁️</div>
-
     <header>
         <h1>Орфографический практикум</h1>
         <p>7 класс · Приставки, оканчивающиеся на З/С · ПРЕ-/ПРИ- · Ы/И после приставок</p>
@@ -450,7 +354,7 @@
     <main>
         <!-- ======================= ТЕОРИЯ ======================= -->
         <section class="theory">
-            <h2>📚 Теория</h2>
+            <h2>Теория</h2>
 
             <div class="rule-card">
                 <h3>1. Приставки, оканчивающиеся на З и С</h3>
@@ -501,10 +405,10 @@
                 </table>
 
                 <div class="warning">
-                    ⚠️ <b>Важно:</b> приставки <em>З-</em> не бывает! Пишем всегда <b>С</b>: сделать, сдать, сжать.
+                    <b>Важно:</b> приставки <em>З-</em> не бывает! Пишем всегда <b>С</b>: сделать, сдать, сжать.
                 </div>
                 <div class="warning">
-                    💡 <b>Не путай приставки с корнями!</b> В словах <em>здесь, здание, здоровье, ни зги</em> буква <b>З</b> — это часть <b>корня</b>, а не приставка. Правило о приставках на З/С к ним не применяется.
+                    <b>Не путай приставки с корнями!</b> В словах <em>здесь, здание, здоровье, ни зги</em> буква <b>З</b> — это часть <b>корня</b>, а не приставка. Правило о приставках на З/С к ним не применяется.
                 </div>
             </div>
 
@@ -533,7 +437,7 @@
                 </span>
 
                 <div class="warning">
-                    ⚠️ <b>Слова-исключения, которые нужно запомнить:</b><br>
+                    <b>Слова-исключения, которые нужно запомнить:</b><br>
                     <em>презирать</em> (не уважать), <em>призирать</em> (заботиться),<br>
                     <em>предать</em> (выдать), <em>придать</em> (добавить),<br>
                     <em>предел, придел, преемник, приёмник, претворить, притворить, преступить, приступить.</em>
@@ -558,14 +462,14 @@
                 </ul>
 
                 <div class="warning">
-                    💡 <b>Запомни!</b> В слове <em>взимать</em> после приставки <b>ВЗ-</b> пишется И (это исключение).
+                    <b>Запомни!</b> В слове <em>взимать</em> после приставки <b>ВЗ-</b> пишется И (это исключение).
                 </div>
             </div>
         </section>
 
         <!-- ======================= ПРАКТИКА ======================= -->
         <section class="practice">
-            <h2>✍️ Практикум</h2>
+            <h2>Практикум</h2>
             <p style="color:#5a6c80;">Выбери тему и выполни задания. В каждой теме — своя кнопка «Проверить» и свой результат.</p>
 
             <div class="tabs">
@@ -600,7 +504,7 @@
     </main>
 
     <footer>
-        <p>© Создано для урока русского языка в 7 классе</p>
+        <p>Создано для урока русского языка в 7 классе</p>
     </footer>
 
     <script>
@@ -617,8 +521,8 @@
                 { type: "choice", text: "В каком слове пишется С?", options: ["бе..жалостный", "и..чезнуть", "..дать", "ра..вязать"], answer: "и..чезнуть" },
                 { type: "choice", text: "В каком слове пишется З?", options: ["ра..сказ", "бе..полезный", "ра..будить", "бе..шумный"], answer: "ра..будить" },
                 { type: "choice", text: "В каком слове приставка оканчивается на З?", options: ["сделать", "разбудить", "испугать", "расписать"], answer: "разбудить" },
-                { type: "whole", text: "Напиши слово целиком: ра__бить", answer: "разбить" },
-                { type: "whole", text: "Напиши слово целиком: «бе__конечный»", answer: "бесконечный" }
+                { type: "input", text: "ра..бить", answer: "з" },
+                { type: "input", text: "бе..конечный", answer: "с" }
             ],
             pre: [
                 { type: "input", text: "пр..ехать", answer: "и" },
@@ -633,8 +537,8 @@
                 { type: "choice", text: "В каком слове пишется ПРЕ-?", options: ["пр..клеить", "пр..мудрый", "пр..сесть", "пр..школьный"], answer: "пр..мудрый" },
                 { type: "choice", text: "Определи значение приставки в слове «приоткрыть»:", options: ["Приближение", "Неполное действие", "Очень", "Пере-"], answer: "Неполное действие" },
                 { type: "choice", text: "Какое слово является исключением и пишется с Е?", options: ["пр..зирать (заботиться)", "пр..зирать (не уважать)", "пр..ехать", "пр..клеить"], answer: "пр..зирать (не уважать)" },
-                { type: "whole", text: "Напиши слово целиком: «пр__красный»", answer: "прекрасный" },
-                { type: "whole", text: "Напиши слово целиком: «пр__школьный»", answer: "пришкольный" }
+                { type: "input", text: "пр..красный", answer: "е" },
+                { type: "input", text: "пр..школьный", answer: "и" }
             ],
             yi: [
                 { type: "input", text: "без..нтересный", answer: "ы" },
@@ -673,17 +577,6 @@
                                 ${num}
                                 <span>${parts[0]}</span>
                                 <input type="text" maxlength="1" data-id="${globalIndex}" data-type="input" placeholder="?">
-                                <span>${parts[1] || ''}</span>
-                            </div>
-                            <div class="feedback" data-feedback="${globalIndex}"></div>
-                        `;
-                    } else if (task.type === "whole") {
-                        const parts = task.text.split('__');
-                        div.innerHTML = `
-                            <div class="text">
-                                ${num}
-                                <span>${parts[0]}</span>
-                                <input type="text" data-id="${globalIndex}" data-type="whole" placeholder="слово" style="width:170px;">
                                 <span>${parts[1] || ''}</span>
                             </div>
                             <div class="feedback" data-feedback="${globalIndex}"></div>
@@ -730,7 +623,7 @@
                 let isCorrect = false;
                 let userAnswer = '';
 
-                if (task.type === "input" || task.type === "whole") {
+                if (task.type === "input") {
                     const input = document.querySelector(`input[data-id="${globalIndex}"]`);
                     if (!input) return;
                     userAnswer = input.value.toLowerCase().trim();
@@ -746,10 +639,10 @@
                 const fb = document.querySelector(`.feedback[data-feedback="${globalIndex}"]`);
                 if (fb) {
                     if (isCorrect) {
-                        fb.textContent = "✓ Верно!";
+                        fb.textContent = "Верно";
                         fb.className = "feedback ok";
                     } else {
-                        fb.textContent = "✗ Ошибка";
+                        fb.textContent = "Ошибка";
                         fb.className = "feedback err";
                     }
                 }
@@ -766,9 +659,9 @@
             else if (percent >= 60) resultDiv.style.background = 'linear-gradient(135deg, #f39c12, #d68910)';
             else resultDiv.style.background = 'linear-gradient(135deg, #e74c3c, #c0392b)';
 
-            if (percent === 100) resultDiv.textContent += " 🎉 Идеально!";
-            else if (percent >= 80) resultDiv.textContent += " 👍 Хорошо!";
-            else resultDiv.textContent += " 💪 Попробуй ещё раз!";
+            if (percent === 100) resultDiv.textContent += " — идеально!";
+            else if (percent >= 80) resultDiv.textContent += " — хорошо!";
+            else resultDiv.textContent += " — попробуй ещё раз!";
         }
 
         document.querySelectorAll('.check-btn').forEach(btn => {
