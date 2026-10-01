@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Русский язык: Орфография (7 класс)</title>
+    <title>Русский язык: Орфография</title>
     <style>
         * { box-sizing: border-box; }
 
@@ -15,6 +15,44 @@
             padding: 0;
             line-height: 1.65;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ======= ПЛАВАЮЩИЕ КАРТИНКИ ПО БОКАМ ======= */
+        .side-image {
+            position: fixed;
+            z-index: 5;
+            pointer-events: none;
+            user-select: none;
+            filter: drop-shadow(0 8px 16px rgba(74, 144, 226, 0.25));
+        }
+        .side-image svg { display: block; }
+
+        .cat-side {
+            top: 22%;
+            left: 1%;
+            width: 110px;
+            animation: floatY 6s ease-in-out infinite;
+        }
+        .owl-side {
+            bottom: 12%;
+            right: 1%;
+            width: 120px;
+            animation: floatY 7s ease-in-out infinite 1s;
+        }
+
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+        }
+
+        @media (max-width: 1100px) {
+            .cat-side { width: 80px; left: 0.5%; }
+            .owl-side { width: 90px; right: 0.5%; }
+        }
+        @media (max-width: 850px) {
+            .side-image { display: none; }
         }
 
         /* ======= ШАПКА ======= */
@@ -22,7 +60,7 @@
             background: linear-gradient(135deg, #4a90e2 0%, #6a5acd 50%, #9b59b6 100%);
             color: white;
             text-align: center;
-            padding: 3.5rem 1rem 3.5rem;
+            padding: 3rem 1rem 2.5rem;
             margin-bottom: 2rem;
             box-shadow: 0 6px 20px rgba(74, 144, 226, 0.35);
             position: relative;
@@ -41,17 +79,65 @@
             50% { transform: scale(1.15); }
         }
         header h1 {
-            margin: 0 0 12px;
+            margin: 0 0 10px;
             font-size: 2.3rem;
             letter-spacing: 0.5px;
             position: relative;
             text-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
         header p {
-            margin: 0;
+            margin: 0 0 20px;
             opacity: 0.95;
             font-size: 1.05rem;
             position: relative;
+        }
+
+        /* ======= ДЕКОРАТИВНЫЙ БАННЕР С БУКВАМИ ======= */
+        .letter-banner {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            padding: 12px 20px;
+            max-width: 620px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50px;
+            backdrop-filter: blur(6px);
+            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.3);
+        }
+        .letter-banner .letter {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 48px;
+            height: 48px;
+            padding: 0 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.15rem;
+            letter-spacing: 1px;
+            background: white;
+            color: #357abd;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            animation: letterPop 4s ease-in-out infinite;
+        }
+        .letter-banner .letter:nth-child(1) { animation-delay: 0s; }
+        .letter-banner .letter:nth-child(2) { animation-delay: 0.3s; }
+        .letter-banner .letter:nth-child(3) { animation-delay: 0.6s; }
+        .letter-banner .letter:nth-child(4) { animation-delay: 0.9s; }
+        .letter-banner .letter:nth-child(5) { animation-delay: 1.2s; }
+        .letter-banner .letter:nth-child(6) { animation-delay: 1.5s; }
+        .letter-banner .divider {
+            width: 6px; height: 6px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 50%;
+        }
+        @keyframes letterPop {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-6px) scale(1.05); }
         }
 
         /* ======= ОСНОВНОЙ КОНТЕЙНЕР ======= */
@@ -60,6 +146,7 @@
             margin: 0 auto;
             padding: 0 1rem 4rem;
             position: relative;
+            z-index: 10;
         }
 
         h2 {
@@ -334,7 +421,16 @@
             font-size: 0.9rem;
             border-top: 1px solid #e2e8f0;
             margin-top: 2rem;
+            position: relative;
+            z-index: 10;
         }
+        footer .paws {
+            display: inline-flex;
+            gap: 14px;
+            margin-bottom: 10px;
+            opacity: 0.45;
+        }
+        footer .paws svg { display: block; }
 
         @media (max-width: 600px) {
             header h1 { font-size: 1.6rem; }
@@ -342,13 +438,120 @@
             .tab-btn { min-width: auto; }
             .prefix-table { font-size: 0.85rem; }
             .prefix-table th, .prefix-table td { padding: 7px 8px; }
+            .letter-banner .letter { min-width: 38px; height: 38px; padding: 0 10px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
+    <!-- ========= КАРТИНКА СЛЕВА: КОТ-УЧЁНЫЙ С КНИГОЙ ========= -->
+    <div class="side-image cat-side" aria-hidden="true">
+        <svg viewBox="0 0 120 140" xmlns="http://www.w3.org/2000/svg">
+            <!-- хвост -->
+            <path d="M20,110 Q-5,100 8,80 Q18,68 25,80" stroke="#4a90e2" stroke-width="9" fill="none" stroke-linecap="round"/>
+            <!-- тело -->
+            <ellipse cx="60" cy="98" rx="34" ry="30" fill="#f4a261"/>
+            <!-- грудка -->
+            <ellipse cx="60" cy="102" rx="18" ry="20" fill="#ffe8cc"/>
+            <!-- книга -->
+            <rect x="42" y="90" width="36" height="26" rx="4" fill="#6a5acd"/>
+            <rect x="42" y="90" width="18" height="26" rx="4" fill="#8b7ae0"/>
+            <line x1="60" y1="92" x2="60" y2="114" stroke="white" stroke-width="1.5"/>
+            <line x1="46" y1="98" x2="56" y2="98" stroke="white" stroke-width="1.2" opacity="0.7"/>
+            <line x1="46" y1="104" x2="56" y2="104" stroke="white" stroke-width="1.2" opacity="0.7"/>
+            <line x1="64" y1="98" x2="74" y2="98" stroke="white" stroke-width="1.2" opacity="0.7"/>
+            <line x1="64" y1="104" x2="74" y2="104" stroke="white" stroke-width="1.2" opacity="0.7"/>
+            <!-- лапы -->
+            <ellipse cx="44" cy="118" rx="8" ry="5" fill="#f4a261"/>
+            <ellipse cx="76" cy="118" rx="8" ry="5" fill="#f4a261"/>
+            <!-- голова -->
+            <ellipse cx="60" cy="52" rx="30" ry="26" fill="#f4a261"/>
+            <!-- ушки -->
+            <path d="M34,38 L30,14 L50,30 Z" fill="#f4a261" stroke="#e76f51" stroke-width="2"/>
+            <path d="M86,38 L90,14 L70,30 Z" fill="#f4a261" stroke="#e76f51" stroke-width="2"/>
+            <path d="M38,35 L35,22 L47,31 Z" fill="#ffb4a2"/>
+            <path d="M82,35 L85,22 L73,31 Z" fill="#ffb4a2"/>
+            <!-- глаза -->
+            <circle cx="48" cy="50" r="6" fill="white"/>
+            <circle cx="72" cy="50" r="6" fill="white"/>
+            <circle cx="49" cy="51" r="3.2" fill="#2c3e50"/>
+            <circle cx="73" cy="51" r="3.2" fill="#2c3e50"/>
+            <circle cx="50" cy="49" r="1" fill="white"/>
+            <circle cx="74" cy="49" r="1" fill="white"/>
+            <!-- нос и рот -->
+            <path d="M60,58 L56,62 L64,62 Z" fill="#e76f51"/>
+            <path d="M60,62 Q56,68 52,64" stroke="#2c3e50" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <path d="M60,62 Q64,68 68,64" stroke="#2c3e50" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            <!-- усы -->
+            <line x1="38" y1="58" x2="50" y2="60" stroke="#2c3e50" stroke-width="1.2"/>
+            <line x1="38" y1="64" x2="50" y2="63" stroke="#2c3e50" stroke-width="1.2"/>
+            <line x1="82" y1="58" x2="70" y2="60" stroke="#2c3e50" stroke-width="1.2"/>
+            <line x1="82" y1="64" x2="70" y2="63" stroke="#2c3e50" stroke-width="1.2"/>
+        </svg>
+    </div>
+
+    <!-- ========= КАРТИНКА СПРАВА: СОВА С УКАЗКОЙ ========= -->
+    <div class="side-image owl-side" aria-hidden="true">
+        <svg viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg">
+            <!-- тело -->
+            <ellipse cx="60" cy="90" rx="36" ry="42" fill="#6a5acd"/>
+            <!-- животик -->
+            <ellipse cx="60" cy="98" rx="22" ry="30" fill="#e0d7ff"/>
+            <!-- перья на груди (штрихи) -->
+            <path d="M50,88 Q60,96 70,88" stroke="#b3a4e8" stroke-width="1.5" fill="none"/>
+            <path d="M48,98 Q60,106 72,98" stroke="#b3a4e8" stroke-width="1.5" fill="none"/>
+            <path d="M50,108 Q60,116 70,108" stroke="#b3a4e8" stroke-width="1.5" fill="none"/>
+            <!-- крылья -->
+            <path d="M24,80 Q14,90 24,110 Q32,100 34,88 Z" fill="#4a3f9c"/>
+            <path d="M96,80 Q106,90 96,110 Q88,100 86,88 Z" fill="#4a3f9c"/>
+            <!-- голова (ушки-пучки) -->
+            <path d="M28,40 L22,14 L46,30 Z" fill="#6a5acd"/>
+            <path d="M92,40 L98,14 L74,30 Z" fill="#6a5acd"/>
+            <!-- голова -->
+            <ellipse cx="60" cy="48" rx="34" ry="30" fill="#6a5acd"/>
+            <!-- лицевой диск -->
+            <ellipse cx="60" cy="52" rx="28" ry="24" fill="#e0d7ff"/>
+            <!-- глаза -->
+            <circle cx="48" cy="48" r="11" fill="white"/>
+            <circle cx="72" cy="48" r="11" fill="white"/>
+            <circle cx="48" cy="48" r="6" fill="#2c3e50"/>
+            <circle cx="72" cy="48" r="6" fill="#2c3e50"/>
+            <circle cx="50" cy="46" r="2" fill="white"/>
+            <circle cx="74" cy="46" r="2" fill="white"/>
+            <!-- клюв -->
+            <path d="M60,52 L54,62 L66,62 Z" fill="#f4a261"/>
+            <!-- очки (отражение знаний) -->
+            <circle cx="48" cy="48" r="12" fill="none" stroke="#2c3e50" stroke-width="2"/>
+            <circle cx="72" cy="48" r="12" fill="none" stroke="#2c3e50" stroke-width="2"/>
+            <line x1="60" y1="48" x2="60" y2="48" stroke="#2c3e50" stroke-width="2"/>
+            <line x1="36" y1="48" x2="34" y2="48" stroke="#2c3e50" stroke-width="2"/>
+            <line x1="84" y1="48" x2="86" y2="48" stroke="#2c3e50" stroke-width="2"/>
+            <!-- указка в правом крыле -->
+            <line x1="90" y1="100" x2="118" y2="60" stroke="#e76f51" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="118" cy="60" r="4" fill="#e76f51"/>
+            <!-- лапки -->
+            <path d="M50,130 L46,140 M50,130 L54,140 M50,130 L50,140" stroke="#f4a261" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <path d="M70,130 L66,140 M70,130 L74,140 M70,130 L70,140" stroke="#f4a261" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        </svg>
+    </div>
+
     <header>
         <h1>Орфографический практикум</h1>
-        <p>7 класс · Приставки, оканчивающиеся на З/С · ПРЕ-/ПРИ- · Ы/И после приставок</p>
+        <p>Приставки на З/С · ПРЕ-/ПРИ- · Ы/И после приставок</p>
+
+        <!-- ДЕКОРАТИВНЫЙ БАННЕР С БУКВАМИ -->
+        <div class="letter-banner">
+            <span class="letter">З</span>
+            <span class="divider"></span>
+            <span class="letter">С</span>
+            <span class="divider"></span>
+            <span class="letter">ПРЕ</span>
+            <span class="divider"></span>
+            <span class="letter">ПРИ</span>
+            <span class="divider"></span>
+            <span class="letter">Ы</span>
+            <span class="divider"></span>
+            <span class="letter">И</span>
+        </div>
     </header>
 
     <main>
@@ -504,7 +707,12 @@
     </main>
 
     <footer>
-        <p>Создано для урока русского языка в 7 классе</p>
+        <div class="paws" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="6" ry="5" fill="#8a97a8"/><circle cx="5" cy="9" r="2.5" fill="#8a97a8"/><circle cx="10" cy="5" r="2.5" fill="#8a97a8"/><circle cx="14" cy="5" r="2.5" fill="#8a97a8"/><circle cx="19" cy="9" r="2.5" fill="#8a97a8"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="6" ry="5" fill="#8a97a8"/><circle cx="5" cy="9" r="2.5" fill="#8a97a8"/><circle cx="10" cy="5" r="2.5" fill="#8a97a8"/><circle cx="14" cy="5" r="2.5" fill="#8a97a8"/><circle cx="19" cy="9" r="2.5" fill="#8a97a8"/></svg>
+            <svg width="22" height="22" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="6" ry="5" fill="#8a97a8"/><circle cx="5" cy="9" r="2.5" fill="#8a97a8"/><circle cx="10" cy="5" r="2.5" fill="#8a97a8"/><circle cx="14" cy="5" r="2.5" fill="#8a97a8"/><circle cx="19" cy="9" r="2.5" fill="#8a97a8"/></svg>
+        </div>
+        <p>Создано для урока русского языка</p>
     </footer>
 
     <script>
